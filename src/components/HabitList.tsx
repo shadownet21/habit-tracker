@@ -11,9 +11,10 @@ export type Habit = { id: string; name: string };
 
 type HabitListProps = {
   habits: Habit[];
+  deleteHabit: (id: string) => void;
 };
 
-export function HabitList({ habits }: HabitListProps) {
+export function HabitList({ habits, deleteHabit }: HabitListProps) {
   if (habits.length === 0) {
     return (
       <p className="text-center text-zinc-500 py-12">
@@ -28,7 +29,7 @@ export function HabitList({ habits }: HabitListProps) {
         <h1 key={habit.id}> {habit.name} </h1>
       ))}
       {habits.map((habit) => (
-        <HabitItem key={habit.id} habit={habit} />
+        <HabitItem deleteHabit={deleteHabit} key={habit.id} habit={habit} />
       ))}
     </div>
   );
